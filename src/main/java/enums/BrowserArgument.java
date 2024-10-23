@@ -1,6 +1,6 @@
 package enums;
 
-public enum ArgumentBrowser {
+public enum BrowserArgument {
     HEADLESS("--headless"),
     KIOSK("--kiosk"),
     FULL_SCREEN("--start-maximized"),
@@ -8,7 +8,7 @@ public enum ArgumentBrowser {
 
     private String argumentBrowser;
 
-    ArgumentBrowser(String argumentBrowser) {
+    BrowserArgument(String argumentBrowser) {
         this.argumentBrowser = argumentBrowser;
     }
 
