@@ -18,5 +18,8 @@ public abstract class AbsBasePage extends Helper {
     public WebElement setLocator(IdArgument idArgument) {
         return driver.findElement(By.cssSelector(String.format(this.baseLocator, idArgument.getId())));
     }
+    public void open (){
+        driver.get(baseUrl);
+    }
 }
 

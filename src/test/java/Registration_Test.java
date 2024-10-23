@@ -19,8 +19,8 @@ public class Registration_Test {
 
     private WebDriver driver;
     private Logger logger = LogManager.getLogger(Registration_Test.class);
-    private String baseUrl = System.getProperty("baseUrl");
     private RegistrationPage registrationPage;
+
 
 
     @BeforeAll
@@ -38,12 +38,13 @@ public class Registration_Test {
     @Test
     public void resultTest() throws InterruptedException {
         logger.info("Переход по ссылке");
-        driver.get(baseUrl);
+        registrationPage.open();
         registrationPage.
                 setUserName("ygu").
                 setEmail("ug8g").
                 setPassword("78g8").
-                setConfirmPassword("78g8");
+                setConfirmPassword("78g8").
+                setBirthdate("29.07.1995");
         registrationPage.checkPasswordWithConfirm();
 
         Thread.sleep(5000);
