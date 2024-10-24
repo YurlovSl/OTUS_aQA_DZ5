@@ -41,6 +41,7 @@ public class Registration_Test {
                 setConfirmPassword(System.getProperty("confPassword")).
                 setBirthdate(System.getProperty("date"));
         registrationPage.checkPasswordWithConfirm();
+        registrationPage.parseDate();
         registrationPage.setLevelLanguage(System.getProperty("levelL"));
         registrationPage.clickRegistration();
         registrationPage.checkOutputData();

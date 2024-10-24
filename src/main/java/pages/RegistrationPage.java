@@ -49,6 +49,12 @@ public class RegistrationPage extends AbsBasePage {
         return this;
     }
 
+    public String parseDate (){
+        String[] parts = System.getProperty("date").split("\\.");
+        return String.format("%s-%s-%s", parts[2], parts[1], parts[0]);
+    }
+
+
     public String setLevelLanguage(String level){
         String lvl = String.format("option[value='%s']",System.getProperty("levelL"));
         WebElement levelLanguage = driver.findElement(By.cssSelector(lvl));
@@ -82,7 +88,7 @@ public class RegistrationPage extends AbsBasePage {
         String acrtualOutput = setLocator(IdArgument.OUTPUT).getText();
 
         String expectedOutput = String.format("Имя пользователя: %s\nЭлектронная почта: %s\nДата рождения: %s\nУровень языка: %s",
-                System.getProperty("userName"), System.getProperty("email"), System.getProperty("date"), setLevelLanguage(System.getProperty("levelL")) );
+                System.getProperty("userName"), System.getProperty("email"), parseDate(), setLevelLanguage(System.getProperty("levelL")) );
         logger.info(setLocator(IdArgument.OUTPUT).getText());
         logger.info(expectedOutput);
         String s = "4";
