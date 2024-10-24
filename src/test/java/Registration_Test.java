@@ -12,12 +12,9 @@ import pages.RegistrationPage;
 
 public class Registration_Test {
 
-
     private WebDriver driver;
     private Logger logger = LogManager.getLogger(Registration_Test.class);
     private RegistrationPage registrationPage;
-
-
 
     @BeforeAll
     public static void setup() {
@@ -45,9 +42,6 @@ public class Registration_Test {
         registrationPage.setLevelLanguage(System.getProperty("levelL"));
         registrationPage.clickRegistration();
         registrationPage.checkOutputData();
-
-
-        Thread.sleep(5000);
     }
 
     @AfterEach

@@ -12,8 +12,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class RegistrationPage extends AbsBasePage {
 
-//    @FindBy(css = "option[value='intermediate']")
-//    private WebElement setLevelLanguage;
     @FindBy(css = "[type='submit']")
     private WebElement btnSubmit;
 
@@ -58,13 +56,14 @@ public class RegistrationPage extends AbsBasePage {
     public String setLevelLanguage(String level){
         String lvl = String.format("option[value='%s']",System.getProperty("levelL"));
         WebElement levelLanguage = driver.findElement(By.cssSelector(lvl));
-        logger.info(levelLanguage.isSelected());
+
         if (!levelLanguage.isSelected()){
+            logger.info("Выбран элемент в выпадающем окне? - " + levelLanguage.isSelected());
             setLocator(IdArgument.LANGUAGE_LEVEL).click();
             levelLanguage.click();
             webDriverWait.until(ExpectedConditions.elementToBeSelected(levelLanguage));
             setLocator(IdArgument.LANGUAGE_LEVEL).click();
-            logger.info(levelLanguage.isSelected());
+            logger.info("Выбран элемент в выпадающем окне? - " + levelLanguage.isSelected());
         } else
             logger.info("Элемент уже выбран");
         return levelLanguage.getAttribute("value");
@@ -91,7 +90,6 @@ public class RegistrationPage extends AbsBasePage {
                 System.getProperty("userName"), System.getProperty("email"), parseDate(), setLevelLanguage(System.getProperty("levelL")) );
         logger.info(setLocator(IdArgument.OUTPUT).getText());
         logger.info(expectedOutput);
-        String s = "4";
         assertThat(acrtualOutput).isEqualTo(expectedOutput);
 
 
