@@ -3,16 +3,19 @@ package pages;
 import enums.IdArgument;
 import exeptions.DateFormEx;
 import exeptions.PasswordFailedEx;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class RegistrationPage extends AbsBasePage {
+
+//    @FindBy(css = "option[value='intermediate']")
+//    private WebElement setLevelLanguage;
+    @FindBy(css = "[type='submit']")
+    private WebElement btnSubmit;
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
@@ -20,7 +23,6 @@ public class RegistrationPage extends AbsBasePage {
 
     public RegistrationPage setUserName(String text) {
         enterText(setLocator(IdArgument.USERNAME), text);
-
         return this;
     }
 
@@ -47,6 +49,21 @@ public class RegistrationPage extends AbsBasePage {
         return this;
     }
 
+    public String setLevelLanguage(String level){
+        String lvl = String.format("option[value='%s']",System.getProperty("levelL"));
+        WebElement levelLanguage = driver.findElement(By.cssSelector(lvl));
+        logger.info(levelLanguage.isSelected());
+        if (!levelLanguage.isSelected()){
+            setLocator(IdArgument.LANGUAGE_LEVEL).click();
+            levelLanguage.click();
+            webDriverWait.until(ExpectedConditions.elementToBeSelected(levelLanguage));
+            setLocator(IdArgument.LANGUAGE_LEVEL).click();
+            logger.info(levelLanguage.isSelected());
+        } else
+            logger.info("Элемент уже выбран");
+        return levelLanguage.getAttribute("value");
+    }
+
 
     public void checkPasswordWithConfirm() {
         String password = setLocator(IdArgument.PASSWORD).getAttribute("value");
@@ -58,5 +75,20 @@ public class RegistrationPage extends AbsBasePage {
             throw new PasswordFailedEx(password, confirm);
     }
 
+    public void clickRegistration(){
+        btnSubmit.click();
+    }
+    public void checkOutputData(){
+        String acrtualOutput = setLocator(IdArgument.OUTPUT).getText();
 
+        String expectedOutput = String.format("Имя пользователя: %s\nЭлектронная почта: %s\nДата рождения: %s\nУровень языка: %s",
+                System.getProperty("userName"), System.getProperty("email"), System.getProperty("date"), setLevelLanguage(System.getProperty("levelL")) );
+        logger.info(setLocator(IdArgument.OUTPUT).getText());
+        logger.info(expectedOutput);
+        String s = "4";
+        assertThat(acrtualOutput).isEqualTo(expectedOutput);
+
+
+
+    }
 }

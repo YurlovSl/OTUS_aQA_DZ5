@@ -6,7 +6,9 @@ public enum IdArgument {
     PASSWORD ("password"),
     CONFIRM_PASSWORD ("confirm_password"),
     BIRTHDATE ("birthdate"),
-    LANGUAGE_LEVEL ("language_level");
+    LANGUAGE_LEVEL ("language_level"),
+    OUTPUT ("output");
+
 
     private String id;
 

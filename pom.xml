@@ -48,6 +48,12 @@
             <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.26.3</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -68,6 +74,12 @@
                     <systemPropertyVariables>
                         <browser>chrome</browser>
                         <baseUrl>https://otus.home.kartushin.su/form.html</baseUrl>
+                        <userName>Vyacheslav</userName>
+                        <email>da@mail.ru</email>
+                        <password>123</password>
+                        <confPassword>123</confPassword>
+                        <date>25.05.1990</date>
+                        <levelL>intermediate</levelL>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
