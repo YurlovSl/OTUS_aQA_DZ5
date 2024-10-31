@@ -2,6 +2,7 @@ package factory.settings;
 
 import enums.BrowserArgument;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class SettingsChromeDriver {
     private ChromeOptions options = new ChromeOptions();
@@ -15,7 +16,7 @@ public class SettingsChromeDriver {
     public ChromeOptions setDefaultMod(){
         return options.addArguments(String.valueOf(BrowserArgument.DEFAULT));
     }
-    public ChromeOptions setFullScreenMod(){
+    public ChromeOptions setFullScreenMod() {
         return options.addArguments(BrowserArgument.FULL_SCREEN.getArgumentBrowser());
     }
 

@@ -11,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class BrowserFabrika implements IbrowserFabrika {
     private String typeBrowserFromProperty = System.getProperty("browser");
 
-    public WebDriver start(BrowserArgument argument) {
+    public  WebDriver start(BrowserArgument argument) {
         switch (typeBrowserFromProperty) {
             case "chrome": {
                 if (argument.equals(BrowserArgument.FULL_SCREEN)) {

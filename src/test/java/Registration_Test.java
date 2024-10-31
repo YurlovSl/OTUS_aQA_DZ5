@@ -1,4 +1,5 @@
 import enums.BrowserArgument;
+import enums.IdArgument;
 import factory.BrowserFabrika;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
@@ -27,21 +28,20 @@ public class Registration_Test {
         driver = new BrowserFabrika().start(BrowserArgument.DEFAULT);
         registrationPage = new RegistrationPage(driver);
     }
+
     @Test
     public void resultTest() throws InterruptedException {
         logger.info("Переход по ссылке");
         registrationPage.open();
-        registrationPage.
-                setUserName(System.getProperty("userName")).
-                setEmail(System.getProperty("email")).
-                setPassword(System.getProperty("password")).
-                setConfirmPassword(System.getProperty("confPassword")).
-                setBirthdate(System.getProperty("date"));
-        registrationPage.checkPasswordWithConfirm();
+        registrationPage.setText(IdArgument.USERNAME, System.getProperty("userName"))
+                        .setText(IdArgument.EMAIL, System.getProperty("email"))
+                        .setText(IdArgument.PASSWORD, System.getProperty("password"))
+                        .setText(IdArgument.CONFIRM_PASSWORD,System.getProperty("confPassword"))
+                        .setBirthdate(System.getProperty("date"))
+                        .checkPasswordWithConfirm();
         registrationPage.parseDate();
         registrationPage.setLevelLanguage(System.getProperty("levelL"));
-        registrationPage.clickRegistration();
-        registrationPage.checkOutputData();
+        registrationPage.clickRegistration().checkOutputData();
     }
 
     @AfterEach
