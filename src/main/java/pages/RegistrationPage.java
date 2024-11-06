@@ -49,7 +49,7 @@ public class RegistrationPage extends AbsBasePage {
     }
 
 
-    public String setLevelLanguage(String level) {
+    public String setLevelLanguage() {
         String lvl = String.format("option[value='%s']", System.getProperty("levelL"));
         WebElement levelLanguage = driver.findElement(By.cssSelector(lvl));
 
@@ -73,7 +73,7 @@ public class RegistrationPage extends AbsBasePage {
     public RegistrationPage checkOutputData() {
         String acrtualOutput = setLocator(IdArgument.OUTPUT).getText();
         String expectedOutput = String.format("Имя пользователя: %s\nЭлектронная почта: %s\nДата рождения: %s\nУровень языка: %s",
-                System.getProperty("userName"), System.getProperty("email"), parseDate(), setLevelLanguage(System.getProperty("levelL")));
+                System.getProperty("userName"), System.getProperty("email"), parseDate(), (System.getProperty("levelL")));
         logger.info(setLocator(IdArgument.OUTPUT).getText());
         logger.info(expectedOutput);
         assertThat(acrtualOutput).isEqualTo(expectedOutput);

@@ -79,7 +79,7 @@
                         <password>123</password>
                         <confPassword>123</confPassword>
                         <date>25.05.1990</date>
-                        <levelL>intermediate</levelL>
+                        <levelL>beginner</levelL>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

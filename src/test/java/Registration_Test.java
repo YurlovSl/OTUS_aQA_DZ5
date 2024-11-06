@@ -30,7 +30,7 @@ public class Registration_Test {
     }
 
     @Test
-    public void resultTest() throws InterruptedException {
+    public void resultTest() {
         logger.info("Переход по ссылке");
         registrationPage.open();
         registrationPage.setText(IdArgument.USERNAME, System.getProperty("userName"))
@@ -40,7 +40,7 @@ public class Registration_Test {
                         .setBirthdate(System.getProperty("date"))
                         .checkPasswordWithConfirm();
         registrationPage.parseDate();
-        registrationPage.setLevelLanguage(System.getProperty("levelL"));
+        registrationPage.setLevelLanguage();
         registrationPage.clickRegistration().checkOutputData();
     }
 
